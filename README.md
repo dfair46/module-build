@@ -1,5 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# vue3 + vite + ts 的模块化打包+build增量更新
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+-blockModule  模块化的结构
+    -模块名1
+        -router
+        -views
+        -index.html
+        -index.vue
+        -index.ts
+        ...
+    -模块名2
+-core         基础框架
+    ...常规vue目录结构
+-router       整个项目的目录结构
+...常规vue结构
