@@ -10,13 +10,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-
     "build:base": "cross-env BUILD_TARGET=base vite build",
     "build:moduleA": "cross-env BUILD_TARGET=moduleA vite build",
     "build:moduleB": "cross-env BUILD_TARGET=moduleB vite build",
     "build:all": "npm run build:base && npm run build:moduleA && npm run build:moduleB"
   },
   "dependencies": {
+    "rollup-plugin-delete": "^3.0.1",
     "vue": "^3.0.0",
     "vue-router": "^4.5.0"
   },

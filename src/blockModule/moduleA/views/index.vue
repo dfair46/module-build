@@ -1,4 +1,4 @@
-<template>moduleAAAAAAAAA+++++++++++++000000000000000</template>
+<template>moduleAAAAAAAAA--++++</template>
 
 <script lang="ts" setup></script>
 
