@@ -7,15 +7,17 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env VITE_BUILD_TARGET=local vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:base": "cross-env BUILD_TARGET=base vite build",
-    "build:moduleA": "cross-env BUILD_TARGET=moduleA vite build",
-    "build:moduleB": "cross-env BUILD_TARGET=moduleB vite build",
+    "build:base": "cross-env VITE_BUILD_TARGET=base vite build",
+    "build:moduleA": "cross-env VITE_BUILD_TARGET=moduleA vite build",
+    "merge-a": "cross-env BUILD_TARGET=moduleA node merge.js",
+    "build:moduleB": "cross-env VITE_BUILD_TARGET=moduleB vite build",
     "build:all": "npm run build:base && npm run build:moduleA && npm run build:moduleB"
   },
   "dependencies": {
+    "fs-extra": "^11.3.0",
     "rollup-plugin-delete": "^3.0.1",
     "vue": "^3.0.0",
     "vue-router": "^4.5.0"

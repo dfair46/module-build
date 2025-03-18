@@ -1,60 +1,59 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import moduleARoute from "@/blockModule/moduleA/router/index.ts"
-import moduleBRoute from "@/blockModule/moduleB/router/index.ts"
+import {createRouter, createWebHistory} from 'vue-router';
 
 // 基础路由
-const routes = [
+let routes = [
     {
         path: '/',
         component: () => import('@/core/views/index.vue'),
     },
-    // {
-    //     path: '/moduleA',
-    //     component: () => import('@/blockModule/moduleA/views/index.vue'), // 动态加载模块 A 的页面
-    // },
-    // {
-    //     path: '/moduleB',
-    //     component: () => import('@/blockModule/moduleB/views/index.vue'), // 动态加载模块 B 的页面
-    // },
-    ...moduleARoute,
-    ...moduleBRoute
 ];
 
-/**
- *
- */
-// 动态导入 moduleA 和 moduleB 的路由
-// async function loadModuleRoutes() {
-//     try {
-//         const moduleARoutes = (await import('./blockModule/moduleA/router')).default;
-//         routes.push(...moduleARoutes);
-//     } catch (e) {
-//         console.warn('moduleA 未加载');
-//     }
-//     try {
-//         const moduleBRoutes = (await import('./blockModule/moduleB/router')).default;
-//         routes.push(...moduleBRoutes);
-//     } catch (e) {
-//         console.warn('moduleB 未加载');
+console.log('import.meta.env?.VITE_BUILD_TARGET', import.meta.env?.VITE_BUILD_TARGET)
+if (import.meta.env?.VITE_BUILD_TARGET === 'local' || !import.meta.env?.VITE_BUILD_TARGET) {
+    const routeAModules = import.meta.glob('../blockModule/moduleA/router/*.ts', {eager: true});
+    // 解析模块并注册到 routes 中
+    for (const path in routeAModules) {
+        const route = (routeAModules[path] as any)?.default;
+        console.log('route', route)
+        if (route) {
+            routes = routes.concat(route);
+        }
+    }
+
+    const routeBModules = import.meta.glob('../blockModule/moduleB/router/*.ts', {eager: true});
+    for (const path in routeBModules) {
+        const route = (routeBModules[path] as any)?.default;
+        if (route) {
+            routes = routes.concat(route);
+        }
+    }
+}
+if (import.meta.env?.VITE_BUILD_TARGET === 'moduleA') {
+    const routeAModules = import.meta.glob('../blockModule/moduleA/router/*.ts', {eager: true});
+    // 解析模块并注册到 routes 中
+    for (const path in routeAModules) {
+        const route = (routeAModules[path] as any)?.default;
+        console.log('route', route)
+        if (route) {
+            routes = routes.concat(route);
+        }
+    }
+}
+// if (import.meta.env?.VITE_BUILD_TARGET === 'moduleB') {
+//     const routeBModules = import.meta.glob('../blockModule/moduleB/router/*.ts', {eager: true});
+//     for (const path in routeBModules) {
+//         const route = (routeBModules[path] as any)?.default;
+//         if (route) {
+//             routes = routes.concat(route);
+//         }
 //     }
 // }
-//
-// await loadModuleRoutes();
 
+
+console.log('routes', routes)
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
-/**
- *
- */
-
-// const router = createRouter({
-//     history: createWebHistory(),
-//     routes:[
-//         ...routes,
-//         ...moduleARoute
-//     ]
-// });
 
 export default router;

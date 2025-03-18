@@ -1,5 +1,5 @@
 <template>
-  core+++++++++++++++++++++++++
+  core-v2
 </template>
 
 <script lang="ts" setup>

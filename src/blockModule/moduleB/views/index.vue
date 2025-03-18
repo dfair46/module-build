@@ -1,4 +1,4 @@
-<template>moduleBBBBBBBBB-eeeeeeeeeeeeeeeeeee</template>
+<template>moduleBBBBBBBBB</template>
 
 <script lang="ts" setup></script>
 
