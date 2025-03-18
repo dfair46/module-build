@@ -16,7 +16,7 @@ export default defineConfig({
         manifest: true, // 生成 manifest.json，供动态加载使用
         rollupOptions: {
             input: {
-                routes: './src/blockModule/moduleA/router/index.ts' // 只打包 routes-a.ts 相关内容
+                routes: './src/blockModule/moduleA/router.ts' // 只打包 routes-a.ts 相关内容
             },
             output: {
                 manualChunks(id) {
