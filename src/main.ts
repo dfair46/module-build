@@ -5,4 +5,7 @@ import router from "./router";
 
 const app = createApp(App);
 app.use(router)
+
+window.__APP_ROUTER__ = router
+
 app.mount('#app')

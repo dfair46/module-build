@@ -58,7 +58,7 @@ export default defineConfig(
                     plugins: [
                         del({targets: ['dist/assets/moduleA/*','dist/assets/moduleB/*',  'dist/assets/index/*', 'dist/assets/main/*', 'dist/assets/vendor/*',]}) // 仅清空 指定 下的内容
                     ],
-                    isBase: false
+                    isBase: true
                 }
             ],
         ])
@@ -99,13 +99,16 @@ export default defineConfig(
                             if (id.includes('node_modules')) {
                                 return 'vendor-chunk';
                             }
-                            if (id.includes('moduleA')) {
-                                return 'moduleA/index-chunk';
-                            }
-                            if (id.includes('moduleB')) {
-                                return 'moduleB/index-chunk';
-                            }
+                            // if (id.includes('moduleA')) {
+                            //     return 'ignore';
+                            // }
+                            // if (id.includes('moduleB')) {
+                            //     return 'moduleB/moduleB-chunk';
+                            // }
                         },
+                        // entryFileNames: 'assets/[name]/[name]-[hash].js', // 输出文件名
+                        // chunkFileNames: 'assets/[name]/[name]-chunk-[hash].js', // 分块文件名
+                        // assetFileNames: 'assets/resource/[name]-[hash].[ext]', // 静态资源文件名
                     },
                     preserveModules: true,
                     plugins: rollUpPlugins,
