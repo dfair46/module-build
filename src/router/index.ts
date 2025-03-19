@@ -29,10 +29,11 @@ console.log('import.meta.env?.VITE_BUILD_TARGET', import.meta.env?.VITE_BUILD_TA
 //     }
 // }
 if (import.meta.env?.VITE_BUILD_TARGET === 'moduleA') {
-    const routeAModules = import.meta.glob('../blockModule/moduleA/router/*.ts', {eager: true});
+    const routeAModules = import.meta.glob('../blockModule/moduleA/router.ts', {eager: true});
+    // const routeAModules = import.meta.glob(`../blockModule/${__BUILD_TARGET__}/router.ts`, {eager: true});
     // 解析模块并注册到 routes 中
     for (const path in routeAModules) {
-        const route = (routeAModules[path] as any)?.default;
+        const route = (routeAModules[path] as any)?.routes;
         console.log('route', route)
         if (route) {
             routes = routes.concat(route);

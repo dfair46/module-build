@@ -1,5 +1,5 @@
 <template>
-  moduleAAAAAAAAA
+  moduleAAAAAAAAA+++++++++++++++++
   <ChickenRabbitSolver/>
   <img :src="img1" alt=""/>
   <img :src="img2" alt=""/>

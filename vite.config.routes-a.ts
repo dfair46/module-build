@@ -16,15 +16,18 @@ export default defineConfig({
         manifest: true, // 生成 manifest.json，供动态加载使用
         rollupOptions: {
             input: {
-                routes: './src/blockModule/moduleA/router.ts' // 只打包 routes-a.ts 相关内容
+                routes: path.resolve(__dirname, './src/blockModule/moduleA/router.ts')// 只打包 routes-a.ts 相关内容
             },
             output: {
                 manualChunks(id) {
                     if (id.includes('moduleA')) {
-                        return 'page-a'; // 将 PageA 相关内容拆分成独立 chunk
+                        return 'routes'; // 将 PageA 相关内容拆分成独立 chunk
                     }
                 }
-            }
+            },
+            // #https://cn.rollupjs.org/configuration-options/#preserveentrysignatures
+            preserveEntrySignatures: 'strict'
+
         }
     }
 });

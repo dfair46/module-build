@@ -17,6 +17,7 @@ async function injectRoutes() {
                     routes.forEach(route => {
                         router.addRoute(route);
                     });
+                    router.replace(router.currentRoute.value.fullPath);
 
                     console.log('Routes injected successfully');
                 };
