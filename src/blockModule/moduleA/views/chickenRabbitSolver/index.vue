@@ -16,7 +16,7 @@
       />
       <button @click="solve">计算</button>
     </div>
-    <div v-if="result" class="result">
+    <div v-if="true" class="result">
       <p>{{ result }}</p>
     </div>
   </div>
@@ -25,11 +25,15 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const totalHeads = ref<number | null>(null);
-const totalLegs = ref<number | null>(null);
+const totalHeads = ref<number | null>(123);
+const totalLegs = ref<number | null>(123);
 const result = ref<string>('');
 
 const solve = () => {
+
+  result.value = '请输入总数量和总腿数';
+  console.log('solvesolvesolvesolvesolve', result.value)
+
   if (totalHeads.value === null || totalLegs.value === null) {
     result.value = '请输入总数量和总腿数';
     return;
@@ -57,7 +61,7 @@ const solve = () => {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 .container {
   max-width: 400px;
   margin: 30px auto;
