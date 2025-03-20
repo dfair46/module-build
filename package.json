@@ -15,6 +15,7 @@
     "merge-a": "shx cp -r dist/routes-a/* dist/",
 
     "build-t": "npm run build-base && npm run build-a && npm run merge-a && npm run preview",
+    "build-aa": "npm run build-a && npm run merge-a && npm run preview",
 
     "build:moduleA": "cross-env VITE_BUILD_TARGET=moduleA vite build",
     "build:moduleB": "cross-env VITE_BUILD_TARGET=moduleB vite build",

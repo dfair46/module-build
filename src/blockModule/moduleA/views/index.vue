@@ -1,7 +1,7 @@
 <template>
-  moduleAAAAAAAAA+++++++++++++++++
+  moduleAAAAAAAAA
   <ChickenRabbitSolver/>
-  <img :src="img1" alt=""/>
+  <img :src="img1" alt="" class="first-img"/>
   <img :src="img2" alt=""/>
   <img :src="img3" alt=""/>
 </template>
@@ -13,4 +13,8 @@ import img3 from "@/blockModule/moduleA/assets/下载.jpg"
 import ChickenRabbitSolver from './chickenRabbitSolver/index.vue';
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.first-img{
+  width: 20px;
+}
+</style>

@@ -37,13 +37,15 @@ export default defineConfig(
                     ]
                 }
             ],
-            ['all',
+            ['base',
                 {
                     rollUpInput: {
                         main: path.resolve(__dirname, 'index.html'),
+                        moduleA: path.resolve(__dirname, 'src/blockModule/moduleA/index.ts')
+                        // moduleA: path.resolve(__dirname, 'src/blockModule/moduleA/index.ts')
                     },
                     plugins: [
-                        del({targets: ['dist/assets/moduleA/*','dist/assets/moduleB/*',  'dist/assets/index/*', 'dist/assets/main/*', 'dist/assets/vendor/*',]}) // 仅清空 指定 下的内容
+                        del({targets: ['dist/assets/*','dist/assets/moduleB/*',  'dist/assets/index/*', 'dist/assets/main/*', 'dist/assets/vendor/*',]}) // 仅清空 指定 下的内容
                     ],
                     isBase: true
                 }
@@ -76,7 +78,11 @@ export default defineConfig(
                         ...rollUpInput
                     },
                     output: {
+                        entryFileNames: 'assets/[name]/[name]-[hash].js', // 输出文件名
+                        chunkFileNames: 'assets/[name]/[name]-chunk-[hash].js', // 分块文件名
+                        assetFileNames: 'assets/resource/[name]-[hash].[ext]', // 静态资源文件名
                         manualChunks: (id: any) => {
+                            console.log(id)
                             // 把 Vue 和 Pinia 等公共依赖拆出去
                             if (id.includes('node_modules')) {
                                 return 'vendor-chunk';

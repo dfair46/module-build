@@ -11,6 +11,7 @@ async function injectRoutes() {
                 const script = document.createElement('script');
                 script.src = `/routes-a/${routeFile}`;
                 script.onload = async () => {
+
                     const { routes } = await import(`/routes-a/${routeFile}`);
                     const router = window.__APP_ROUTER__;
 
